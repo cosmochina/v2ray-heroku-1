@@ -1,5 +1,7 @@
 FROM v2fly/v2fly-core:latest
 
+RUN apk add --no-cache iptables
+
 RUN wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O /root/cloudflared
 RUN chmod +x /root/cloudflared
 ADD startup.sh /startup.sh
