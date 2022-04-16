@@ -51,6 +51,7 @@ EOF
 # Run V2Ray
 if [[ $TUNNEL_TOKEN ]]; then
 echo 'has tunnel token, run cloudflared tunnel'
+iptables -t nat -I PREROUTING -p tcp --dport 2999 -j REDIRECT --to-port $PORT
 /usr/bin/v2ray -config /etc/v2ray/config.json & /root/cloudflared tunnel --no-autoupdate run --token $TUNNEL_TOKEN
 else
 /usr/bin/v2ray -config /etc/v2ray/config.json
